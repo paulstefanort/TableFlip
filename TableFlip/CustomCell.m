@@ -80,6 +80,7 @@
     
     _countLabel = [UILabel new];
     _countLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _countLabel.textAlignment = NSTextAlignmentCenter;
     
     _downVote = [UIButton new];
     _downVote.translatesAutoresizingMaskIntoConstraints = NO;
