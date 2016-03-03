@@ -16,6 +16,9 @@
     UILabel *_rankLabel;
     
     UIView *_votingView;
+    UIButton *_upVote;
+    UILabel *_countLabel;
+    UIButton *_downVote;
 }
 @end
 
@@ -70,6 +73,21 @@
 - (void)setupVotingView {
     _votingView = [UIView new];
     _votingView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    _upVote = [UIButton new];
+    _upVote.translatesAutoresizingMaskIntoConstraints = NO;
+    _upVote.backgroundColor = [UIColor blueColor];
+    
+    _countLabel = [UILabel new];
+    _countLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    _downVote = [UIButton new];
+    _downVote.translatesAutoresizingMaskIntoConstraints = NO;
+    _downVote.backgroundColor = [UIColor blueColor];
+    
+    [_votingView addSubview:_upVote];
+    [_votingView addSubview:_countLabel];
+    [_votingView addSubview:_downVote];
 }
 
 - (void)setupConstraints {
@@ -91,7 +109,7 @@
                                                                              views:NSDictionaryOfVariableBindings(_commentLabel, _rankLabel)];
     [_commentView addConstraints:verticalConstraints];
     
-    NSArray *cardSectionsHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]|"
+    NSArray *cardSectionsHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
                                                                                          options:0
                                                                                          metrics:0
                                                                                            views:NSDictionaryOfVariableBindings(_commentView, _votingView)];
@@ -102,6 +120,30 @@
                                                                                       metrics:0
                                                                                         views:NSDictionaryOfVariableBindings(_commentView)];
     [_card addConstraints:commentViewVerticalConstraints];
+    
+    NSArray *upvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_upVote]|"
+                                                                                   options:0
+                                                                                   metrics:0
+                                                                                     views:NSDictionaryOfVariableBindings(_upVote)];
+    [_votingView addConstraints:upvoteHorizontalConstraints];
+    
+    NSArray *countHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_countLabel]|"
+                                                                                  options:0
+                                                                                  metrics:0
+                                                                                    views:NSDictionaryOfVariableBindings(_countLabel)];
+    [_votingView addConstraints:countHorizontalConstraints];
+    
+    NSArray *downvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_downVote]|"
+                                                                                     options:0
+                                                                                     metrics:0
+                                                                                       views:NSDictionaryOfVariableBindings(_downVote)];
+    [_votingView addConstraints:downvoteHorizontalConstraints];
+    
+    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(20)]-[_countLabel]-[_downVote(20)]-10-|"
+                                                                                 options:0
+                                                                                 metrics:0
+                                                                                   views:NSDictionaryOfVariableBindings(_upVote, _countLabel, _downVote)];
+    [_votingView addConstraints:votingVerticalConstraints];
     
     NSArray *votingViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_votingView]|"
                                                                                      options:0
@@ -125,6 +167,7 @@
 - (void)presentValue:(NSString *)value {
     _commentLabel.text = value;
     _rankLabel.text = @"Presented";
+    _countLabel.text = @"1";
 }
 
 @end
