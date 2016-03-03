@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CustomCell.h"
 
 @interface ViewController () {
     UITableView *_tableView;
@@ -29,6 +30,8 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    _tableView.estimatedRowHeight = 80.0f;
+    [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:@"cellIdentifier"];
     [_tableView reloadData];
     
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -76,12 +79,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", indexPath.row];
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell presentValue:[NSString stringWithFormat:@"Row %ld", indexPath.row]];
     return cell;
 }
 
