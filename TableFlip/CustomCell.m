@@ -152,7 +152,7 @@
                                                                                        views:NSDictionaryOfVariableBindings(_downVote)];
     [_votingView addConstraints:downvoteHorizontalConstraints];
     
-    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(==20)]-[_countLabel]-[_downVote(==20)]-|"
+    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(==20)]-[_countLabel(<=40)]-[_downVote(==20)]-(>=10)-|"
                                                                                  options:0
                                                                                  metrics:0
                                                                                    views:NSDictionaryOfVariableBindings(_upVote, _countLabel, _downVote)];
