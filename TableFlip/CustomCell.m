@@ -10,6 +10,8 @@
 
 @interface CustomCell() {
     UIView *_card;
+    
+    UIView *_commentView;
     UILabel *_commentLabel;
     UILabel *_rankLabel;
 }
@@ -26,9 +28,12 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _card = [UIView new];
+        _card.translatesAutoresizingMaskIntoConstraints = NO;
         _card.backgroundColor = [UIColor whiteColor];
         _card.layer.cornerRadius = 3.0f;
-        _card.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        _commentView = [UIView new];
+        _commentView.translatesAutoresizingMaskIntoConstraints = NO;
         
         _rankLabel = [UILabel new];
         _rankLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -42,27 +47,41 @@
         _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _commentLabel.numberOfLines = 0;
         
-        [_card addSubview:_rankLabel];
-        [_card addSubview:_commentLabel];
+        [_commentView addSubview:_rankLabel];
+        [_commentView addSubview:_commentLabel];
+        
+        [_card addSubview:_commentView];
         [self.contentView addSubview:_card];
         
         NSArray *rankHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
                                                                                      options:0
                                                                                      metrics:0
                                                                                        views:NSDictionaryOfVariableBindings(_rankLabel)];
-        [_card addConstraints:rankHorizontalConstraints];
+        [_commentView addConstraints:rankHorizontalConstraints];
         
         NSArray *commentHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
                                                                                  options:0
                                                                                  metrics:0
                                                                                    views:NSDictionaryOfVariableBindings(_commentLabel)];
-        [_card addConstraints:commentHorizontalConstraints];
+        [_commentView addConstraints:commentHorizontalConstraints];
         
         NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_rankLabel(10)]-2-[_commentLabel(>=40)]-10-|"
                                                                                options:0
                                                                                metrics:0
                                                                                  views:NSDictionaryOfVariableBindings(_commentLabel, _rankLabel)];
-        [_card addConstraints:verticalConstraints];
+        [_commentView addConstraints:verticalConstraints];
+        
+        NSArray *commentViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentView]|"
+                                                                                            options:0
+                                                                                            metrics:0
+                                                                                              views:NSDictionaryOfVariableBindings(_commentView)];
+        [_card addConstraints:commentViewHorizontalConstraints];
+        
+        NSArray *commentViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_commentView]|"
+                                                                                          options:0
+                                                                                          metrics:0
+                                                                                            views:NSDictionaryOfVariableBindings(_commentView)];
+        [_card addConstraints:commentViewVerticalConstraints];
         
         NSArray *cardHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_card]-20-|"
                                                                                      options:0
