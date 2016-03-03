@@ -29,7 +29,6 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    _tableView.estimatedRowHeight = 66.0f;
     [_tableView reloadData];
     
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -72,7 +71,7 @@
 
 # pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
