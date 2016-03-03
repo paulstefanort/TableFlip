@@ -81,7 +81,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell presentValue:[NSString stringWithFormat:@"Row %ld", indexPath.row]];
+    NSString *value;
+    if (indexPath.row % 2 == 0) {
+        value = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia mollis purus et efficitur. Donec ac mi at urna semper mollis. Ut hendrerit rutrum lorem vel blandit. Ut accumsan ex vel lectus consequat, elementum lacinia neque tempor. Integer nec massa sit amet ante interdum dapibus.";
+    } else {
+        value = @"Some comment";
+    }
+    [cell presentValue:value];
     return cell;
 }
 
