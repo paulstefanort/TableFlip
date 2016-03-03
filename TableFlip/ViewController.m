@@ -31,6 +31,7 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.estimatedRowHeight = 80.0f;
+    _tableView.separatorEffect = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:@"cellIdentifier"];
     [_tableView reloadData];
     

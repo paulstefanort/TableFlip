@@ -29,31 +29,39 @@
         _card.backgroundColor = [UIColor whiteColor];
         _card.layer.cornerRadius = 3.0f;
         _card.translatesAutoresizingMaskIntoConstraints = NO;
-
-        _commentLabel = [UILabel new];
-        _commentLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _commentLabel.backgroundColor = [UIColor grayColor];
-        _commentLabel.textColor = [UIColor blackColor];
         
         _rankLabel = [UILabel new];
         _rankLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _rankLabel.backgroundColor = [UIColor darkGrayColor];
         _rankLabel.textColor = [UIColor whiteColor];
+
+        _commentLabel = [UILabel new];
+        _commentLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _commentLabel.backgroundColor = [UIColor grayColor];
+        _commentLabel.textColor = [UIColor blackColor];
+        _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _commentLabel.numberOfLines = 0;
         
-        [_card addSubview:_commentLabel];
         [_card addSubview:_rankLabel];
+        [_card addSubview:_commentLabel];
         [self.contentView addSubview:_card];
         
-        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-[_rankLabel]-10-|"
-                                                                                 options:NSLayoutFormatAlignAllTop
-                                                                                 metrics:nil
-                                                                                   views:NSDictionaryOfVariableBindings(_commentLabel, _rankLabel)];
-        [_card addConstraints:horizontalConstraints];
+        NSArray *rankHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
+                                                                                     options:0
+                                                                                     metrics:0
+                                                                                       views:NSDictionaryOfVariableBindings(_rankLabel)];
+        [_card addConstraints:rankHorizontalConstraints];
         
-        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_commentLabel(60)]-10-|"
+        NSArray *commentHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
+                                                                                 options:0
+                                                                                 metrics:0
+                                                                                   views:NSDictionaryOfVariableBindings(_commentLabel)];
+        [_card addConstraints:commentHorizontalConstraints];
+        
+        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_rankLabel(10)]-2-[_commentLabel(>=40)]-10-|"
                                                                                options:0
-                                                                               metrics:nil
-                                                                                 views:NSDictionaryOfVariableBindings(_commentLabel)];
+                                                                               metrics:0
+                                                                                 views:NSDictionaryOfVariableBindings(_commentLabel, _rankLabel)];
         [_card addConstraints:verticalConstraints];
         
         NSArray *cardHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_card]-20-|"
