@@ -116,7 +116,7 @@
                                                                                            views:NSDictionaryOfVariableBindings(_commentView, _votingView)];
     [_card addConstraints:cardSectionsHorizontalConstraints];
     
-    NSArray *commentViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_commentView]|"
+    NSArray *commentViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
                                                                                       options:0
                                                                                       metrics:0
                                                                                         views:NSDictionaryOfVariableBindings(_commentView)];
@@ -140,7 +140,7 @@
                                                                                        views:NSDictionaryOfVariableBindings(_downVote)];
     [_votingView addConstraints:downvoteHorizontalConstraints];
     
-    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(20)]-[_countLabel]-[_downVote(20)]-10-|"
+    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(20)]-[_countLabel]-[_downVote(20)]-|"
                                                                                  options:0
                                                                                  metrics:0
                                                                                    views:NSDictionaryOfVariableBindings(_upVote, _countLabel, _downVote)];
@@ -166,7 +166,7 @@
 }
 
 - (void)presentValue:(NSString *)value {
-    _commentLabel.text = value;
+    _commentLabel.text = [NSString stringWithFormat:@"%@: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia mollis purus et efficitur. Donec ac mi at urna semper mollis. Ut hendrerit rutrum lorem vel blandit. Ut accumsan ex vel lectus consequat, elementum lacinia neque tempor. Integer nec massa sit amet ante interdum dapibus.", value];
     _rankLabel.text = @"Presented";
     _countLabel.text = @"1";
 }
