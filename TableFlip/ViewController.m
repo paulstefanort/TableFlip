@@ -23,8 +23,6 @@
 }
 
 - (void)setupViewsAndConstraints {
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self setupTableView];
     [self setupConstraints];
 }
@@ -44,6 +42,7 @@
 }
 
 - (void)setupConstraints {
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"H:|[_tableView]|"
                                options:0
