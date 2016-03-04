@@ -44,38 +44,16 @@
 }
 
 - (void)setupConstraints {
-    [self.view addConstraint:[NSLayoutConstraint
-                               constraintWithItem:_tableView
-                               attribute:NSLayoutAttributeTop
-                               relatedBy:NSLayoutRelationEqual
-                               toItem:self.view
-                               attribute:NSLayoutAttributeTop
-                               multiplier:1.0f
-                               constant:0.0f]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_tableView
-                              attribute:NSLayoutAttributeBottom
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeBottom
-                              multiplier:1.0f
-                              constant:0.0f]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_tableView
-                              attribute:NSLayoutAttributeLeadingMargin
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeLeading
-                              multiplier:1.0f
-                              constant:0.0f]];
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:_tableView
-                              attribute:NSLayoutAttributeTrailingMargin
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeTrailing
-                              multiplier:1.0f
-                              constant:0.0f]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[_tableView]|"
+                               options:0
+                               metrics:0
+                               views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[_tableView]|"
+                               options:0
+                               metrics:0
+                               views:NSDictionaryOfVariableBindings(_tableView)]];
 }
 
 # pragma mark - UITableViewDataSource
