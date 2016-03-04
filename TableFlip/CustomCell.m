@@ -102,83 +102,83 @@
 - (void)setupConstraints {
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_card, _commentView, _rankLabel, _commentLabel, _timeLabel, _votingView, _upVote, _countLabel, _downVote);
     
-    NSArray *rankHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
-                                                                                 options:0
-                                                                                 metrics:0
-                                                                                   views:viewsDictionary];
-    [_commentView addConstraints:rankHorizontalConstraints];
+    [_commentView addConstraints: [NSLayoutConstraint
+                                   constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
+                                   options:0
+                                   metrics:0
+                                   views:viewsDictionary]];
     
-    NSArray *commentHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
-                                                                                    options:0
-                                                                                    metrics:0
-                                                                                      views:viewsDictionary];
-    [_commentView addConstraints:commentHorizontalConstraints];
+    [_commentView addConstraints:[NSLayoutConstraint
+                                  constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
+                                  options:0
+                                  metrics:0
+                                  views:viewsDictionary]];
     
-    NSArray *timeHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_timeLabel]-10-|"
-                                                                                 options:0
-                                                                                 metrics:0
-                                                                                   views:viewsDictionary];
-    [_commentView addConstraints:timeHorizontalConstraints];
+    [_commentView addConstraints:[NSLayoutConstraint
+                                  constraintsWithVisualFormat:@"H:|-10-[_timeLabel]-10-|"
+                                  options:0
+                                  metrics:0
+                                  views:viewsDictionary]];
     
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_rankLabel(==10)]-2-[_commentLabel(>=40)]-2-[_timeLabel(==10)]-10-|"
-                                                                           options:0
-                                                                           metrics:0
-                                                                             views:viewsDictionary];
-    [_commentView addConstraints:verticalConstraints];
+    [_commentView addConstraints:[NSLayoutConstraint
+                                  constraintsWithVisualFormat:@"V:|-10-[_rankLabel(==10)]-2-[_commentLabel(>=40)]-2-[_timeLabel(==10)]-10-|"
+                                  options:0
+                                  metrics:0
+                                  views:viewsDictionary]];
     
-    NSArray *cardSectionsHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
-                                                                                         options:0
-                                                                                         metrics:0
-                                                                                           views:viewsDictionary];
-    [_card addConstraints:cardSectionsHorizontalConstraints];
+    [_card addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
+                           options:0
+                           metrics:0
+                           views:viewsDictionary]];
     
-    NSArray *commentViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
-                                                                                      options:0
-                                                                                      metrics:0
-                                                                                        views:viewsDictionary];
-    [_card addConstraints:commentViewVerticalConstraints];
+    [_card addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
+                           options:0
+                           metrics:0
+                           views:viewsDictionary]];
     
-    NSArray *upvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_upVote]|"
-                                                                                   options:0
-                                                                                   metrics:0
-                                                                                     views:viewsDictionary];
-    [_votingView addConstraints:upvoteHorizontalConstraints];
+    [_votingView addConstraints:[NSLayoutConstraint
+                                 constraintsWithVisualFormat:@"H:|[_upVote]|"
+                                 options:0
+                                 metrics:0
+                                 views:viewsDictionary]];
     
-    NSArray *countHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_countLabel]|"
-                                                                                  options:0
-                                                                                  metrics:0
-                                                                                    views:viewsDictionary];
-    [_votingView addConstraints:countHorizontalConstraints];
+    [_votingView addConstraints:[NSLayoutConstraint
+                                 constraintsWithVisualFormat:@"H:|[_countLabel]|"
+                                 options:0
+                                 metrics:0
+                                 views:viewsDictionary]];
     
-    NSArray *downvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_downVote]|"
-                                                                                     options:0
-                                                                                     metrics:0
-                                                                                       views:viewsDictionary];
-    [_votingView addConstraints:downvoteHorizontalConstraints];
+    [_votingView addConstraints:[NSLayoutConstraint
+                                 constraintsWithVisualFormat:@"H:|[_downVote]|"
+                                 options:0
+                                 metrics:0
+                                 views:viewsDictionary]];
     
-    NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(==20)]-[_countLabel(<=40)]-[_downVote(==20)]-(>=10)-|"
-                                                                                 options:0
-                                                                                 metrics:0
-                                                                                   views:viewsDictionary];
-    [_votingView addConstraints:votingVerticalConstraints];
+    [_votingView addConstraints:[NSLayoutConstraint
+                                 constraintsWithVisualFormat:@"V:|-10-[_upVote(==20)]-[_countLabel(<=40)]-[_downVote(==20)]-(>=10)-|"
+                                 options:0
+                                 metrics:0
+                                 views:viewsDictionary]];
     
-    NSArray *votingViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_votingView]|"
-                                                                                     options:0
-                                                                                     metrics:0
-                                                                                       views:viewsDictionary];
-    [_card addConstraints:votingViewVerticalConstraints];
+    [_card addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"V:|[_votingView]|"
+                           options:0
+                           metrics:0
+                           views:viewsDictionary]];
     
-    NSArray *cardHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_card]-20-|"
-                                                                                 options:0
-                                                                                 metrics:0
-                                                                                   views:viewsDictionary];
-    [self.contentView addConstraints:cardHorizontalConstraints];
+    [self.contentView addConstraints:[NSLayoutConstraint
+                                      constraintsWithVisualFormat:@"H:|-20-[_card]-20-|"
+                                      options:0
+                                      metrics:0
+                                      views:viewsDictionary]];
     
-    NSArray *cardVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_card]-10-|"
-                                                                               options:0
-                                                                               metrics:0
-                                                                                 views:viewsDictionary];
-    [self.contentView addConstraints:cardVerticalConstraints];
+    [self.contentView addConstraints:[NSLayoutConstraint
+                                      constraintsWithVisualFormat:@"V:|-10-[_card]-10-|"
+                                      options:0
+                                      metrics:0
+                                      views:viewsDictionary]];
 }
 
 - (void)presentValue:(NSString *)value {
