@@ -44,38 +44,38 @@
 }
 
 - (void)setupConstraints {
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_tableView
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.view
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1.0f
-                                                                      constant:0.0f];
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:_tableView
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.view
-                                                                        attribute:NSLayoutAttributeBottom
-                                                                       multiplier:1.0f
-                                                                         constant:0.0f];
-    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:_tableView
-                                                                         attribute:NSLayoutAttributeLeadingMargin
-                                                                         relatedBy:NSLayoutRelationEqual
-                                                                            toItem:self.view
-                                                                         attribute:NSLayoutAttributeLeading
-                                                                        multiplier:1.0f
-                                                                          constant:0.0f];
-    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:_tableView
-                                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                                          relatedBy:NSLayoutRelationEqual
-                                                                             toItem:self.view
-                                                                          attribute:NSLayoutAttributeTrailing
-                                                                         multiplier:1.0f
-                                                                           constant:0.0f];
-    [self.view addConstraint:topConstraint];
-    [self.view addConstraint:bottomConstraint];
-    [self.view addConstraint:leadingConstraint];
-    [self.view addConstraint:trailingConstraint];
+    [self.view addConstraint:[NSLayoutConstraint
+                               constraintWithItem:_tableView
+                               attribute:NSLayoutAttributeTop
+                               relatedBy:NSLayoutRelationEqual
+                               toItem:self.view
+                               attribute:NSLayoutAttributeTop
+                               multiplier:1.0f
+                               constant:0.0f]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:_tableView
+                              attribute:NSLayoutAttributeBottom
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeBottom
+                              multiplier:1.0f
+                              constant:0.0f]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:_tableView
+                              attribute:NSLayoutAttributeLeadingMargin
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeLeading
+                              multiplier:1.0f
+                              constant:0.0f]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:_tableView
+                              attribute:NSLayoutAttributeTrailingMargin
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeTrailing
+                              multiplier:1.0f
+                              constant:0.0f]];
 }
 
 # pragma mark - UITableViewDataSource
