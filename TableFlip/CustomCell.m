@@ -29,25 +29,27 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        // no self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
+        
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        _card = [UIView new];
-        _card.translatesAutoresizingMaskIntoConstraints = NO;
-        _card.backgroundColor = [UIColor whiteColor];
-        _card.layer.cornerRadius = 3.0f;
-        
         [self setupCommentView];
         [self setupVotingView];
-        
-        [_card addSubview:_commentView];
-        [_card addSubview:_votingView];
-        [self.contentView addSubview:_card];
-        
+        [self setupCardView];
         [self setupConstraints];
     }
     return self;
+}
+
+- (void)setupCardView {
+    _card = [UIView new];
+    _card.translatesAutoresizingMaskIntoConstraints = NO;
+    _card.backgroundColor = [UIColor whiteColor];
+    _card.layer.cornerRadius = 3.0f;
+    [_card addSubview:_commentView];
+    [_card addSubview:_votingView];
+    [self.contentView addSubview:_card];
 }
 
 - (void)setupCommentView {
@@ -56,13 +58,11 @@
     
     _rankLabel = [UILabel new];
     _rankLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    // _rankLabel.backgroundColor = [UIColor darkGrayColor];
     _rankLabel.textColor = [UIColor blueColor];
     _rankLabel.font = [UIFont systemFontOfSize:12.0f];
     
     _commentLabel = [UILabel new];
     _commentLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    // _commentLabel.backgroundColor = [UIColor grayColor];
     _commentLabel.textColor = [UIColor grayColor];
     _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _commentLabel.numberOfLines = 0;
@@ -100,82 +100,84 @@
 }
 
 - (void)setupConstraints {
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_card, _commentView, _rankLabel, _commentLabel, _timeLabel, _votingView, _upVote, _countLabel, _downVote);
+    
     NSArray *rankHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
                                                                                  options:0
                                                                                  metrics:0
-                                                                                   views:NSDictionaryOfVariableBindings(_rankLabel)];
+                                                                                   views:viewsDictionary];
     [_commentView addConstraints:rankHorizontalConstraints];
     
     NSArray *commentHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
                                                                                     options:0
                                                                                     metrics:0
-                                                                                      views:NSDictionaryOfVariableBindings(_commentLabel)];
+                                                                                      views:viewsDictionary];
     [_commentView addConstraints:commentHorizontalConstraints];
     
     NSArray *timeHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_timeLabel]-10-|"
                                                                                  options:0
                                                                                  metrics:0
-                                                                                   views:NSDictionaryOfVariableBindings(_timeLabel)];
+                                                                                   views:viewsDictionary];
     [_commentView addConstraints:timeHorizontalConstraints];
     
     NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_rankLabel(==10)]-2-[_commentLabel(>=40)]-2-[_timeLabel(==10)]-10-|"
                                                                            options:0
                                                                            metrics:0
-                                                                             views:NSDictionaryOfVariableBindings(_commentLabel, _rankLabel, _timeLabel)];
+                                                                             views:viewsDictionary];
     [_commentView addConstraints:verticalConstraints];
     
     NSArray *cardSectionsHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
                                                                                          options:0
                                                                                          metrics:0
-                                                                                           views:NSDictionaryOfVariableBindings(_commentView, _votingView)];
+                                                                                           views:viewsDictionary];
     [_card addConstraints:cardSectionsHorizontalConstraints];
     
     NSArray *commentViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
                                                                                       options:0
                                                                                       metrics:0
-                                                                                        views:NSDictionaryOfVariableBindings(_commentView)];
+                                                                                        views:viewsDictionary];
     [_card addConstraints:commentViewVerticalConstraints];
     
     NSArray *upvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_upVote]|"
                                                                                    options:0
                                                                                    metrics:0
-                                                                                     views:NSDictionaryOfVariableBindings(_upVote)];
+                                                                                     views:viewsDictionary];
     [_votingView addConstraints:upvoteHorizontalConstraints];
     
     NSArray *countHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_countLabel]|"
                                                                                   options:0
                                                                                   metrics:0
-                                                                                    views:NSDictionaryOfVariableBindings(_countLabel)];
+                                                                                    views:viewsDictionary];
     [_votingView addConstraints:countHorizontalConstraints];
     
     NSArray *downvoteHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_downVote]|"
                                                                                      options:0
                                                                                      metrics:0
-                                                                                       views:NSDictionaryOfVariableBindings(_downVote)];
+                                                                                       views:viewsDictionary];
     [_votingView addConstraints:downvoteHorizontalConstraints];
     
     NSArray *votingVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_upVote(==20)]-[_countLabel(<=40)]-[_downVote(==20)]-(>=10)-|"
                                                                                  options:0
                                                                                  metrics:0
-                                                                                   views:NSDictionaryOfVariableBindings(_upVote, _countLabel, _downVote)];
+                                                                                   views:viewsDictionary];
     [_votingView addConstraints:votingVerticalConstraints];
     
     NSArray *votingViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_votingView]|"
                                                                                      options:0
                                                                                      metrics:0
-                                                                                       views:NSDictionaryOfVariableBindings(_votingView)];
+                                                                                       views:viewsDictionary];
     [_card addConstraints:votingViewVerticalConstraints];
     
     NSArray *cardHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_card]-20-|"
                                                                                  options:0
                                                                                  metrics:0
-                                                                                   views:NSDictionaryOfVariableBindings(_card)];
+                                                                                   views:viewsDictionary];
     [self.contentView addConstraints:cardHorizontalConstraints];
     
     NSArray *cardVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_card]-10-|"
                                                                                options:0
                                                                                metrics:0
-                                                                                 views:NSDictionaryOfVariableBindings(_card)];
+                                                                                 views:viewsDictionary];
     [self.contentView addConstraints:cardVerticalConstraints];
 }
 
