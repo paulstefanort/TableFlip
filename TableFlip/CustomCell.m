@@ -80,7 +80,7 @@
     _rankLabel = [UILabel new];
     _rankLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _rankLabel.textColor = [UIColor blueColor];
-    _rankLabel.font = [UIFont systemFontOfSize:12.0f];
+    _rankLabel.font = [UIFont systemFontOfSize:14.0f];
     
     _commentText = [UITextView new];
     _commentText.scrollEnabled = NO;
@@ -97,7 +97,7 @@
     
     _timeLabel = [UILabel new];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _timeLabel.font = [UIFont systemFontOfSize:10.0f weight:UIFontWeightLight];
+    _timeLabel.font = [UIFont systemFontOfSize:12.0f];
     
     [_commentView addSubview:_rankLabel];
     [_commentView addSubview:_commentText];
@@ -110,7 +110,8 @@
     
     _upVote = [UIButton new];
     _upVote.translatesAutoresizingMaskIntoConstraints = NO;
-    _upVote.backgroundColor = [UIColor blueColor];
+    [_upVote setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [_upVote setTitle:@"⌃" forState:UIControlStateNormal];
     [_upVote addTarget:self action:@selector(upvotePressed) forControlEvents:UIControlEventTouchUpInside];
     
     _countLabel = [UILabel new];
@@ -119,7 +120,8 @@
     
     _downVote = [UIButton new];
     _downVote.translatesAutoresizingMaskIntoConstraints = NO;
-    _downVote.backgroundColor = [UIColor blueColor];
+    [_downVote setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [_downVote setTitle:@"⌄" forState:UIControlStateNormal];
     [_downVote addTarget:self action:@selector(downvotePressed) forControlEvents:UIControlEventTouchUpInside];
     
     [_votingView addSubview:_upVote];
@@ -213,7 +215,7 @@
                                       views:viewsDictionary]];
     
     [self.contentView addConstraints:[NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"V:|-10-[_card]-10-|"
+                                      constraintsWithVisualFormat:@"V:|-10-[_card]|"
                                       options:0
                                       metrics:0
                                       views:viewsDictionary]];
