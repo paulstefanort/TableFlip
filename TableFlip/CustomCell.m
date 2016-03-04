@@ -83,6 +83,7 @@
     _upVote = [UIButton new];
     _upVote.translatesAutoresizingMaskIntoConstraints = NO;
     _upVote.backgroundColor = [UIColor blueColor];
+    [_upVote addTarget:self action:@selector(upvotePressed) forControlEvents:UIControlEventTouchUpInside];
     
     _countLabel = [UILabel new];
     _countLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -91,6 +92,7 @@
     _downVote = [UIButton new];
     _downVote.translatesAutoresizingMaskIntoConstraints = NO;
     _downVote.backgroundColor = [UIColor blueColor];
+    [_downVote addTarget:self action:@selector(downvotePressed) forControlEvents:UIControlEventTouchUpInside];
     
     [_votingView addSubview:_upVote];
     [_votingView addSubview:_countLabel];
@@ -182,6 +184,14 @@
     _rankLabel.text = @"Presented";
     _countLabel.text = @"1";
     _timeLabel.text = @"10m";
+}
+
+- (void)upvotePressed {
+    NSLog(@"upvoted");
+}
+
+- (void)downvotePressed {
+    NSLog(@"downvoted");
 }
 
 @end
