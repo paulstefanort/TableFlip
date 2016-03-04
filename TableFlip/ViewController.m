@@ -32,7 +32,7 @@
     _tableView.delegate = self;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     _tableView.estimatedRowHeight = 80.0f;
-    _tableView.separatorEffect = UITableViewCellSeparatorStyleNone;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:@"cellIdentifier"];
     
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
