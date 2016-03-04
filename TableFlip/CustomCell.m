@@ -12,7 +12,7 @@
     UIView *_card;
     
     UIView *_commentView;
-    UILabel *_commentLabel;
+    UITextView *_commentText;
     UILabel *_rankLabel;
     UILabel *_timeLabel;
     
@@ -40,7 +40,7 @@
 }
 
 - (void)presentValue:(NSString *)value {
-    _commentLabel.text = value;
+    _commentText.text = value;
     _rankLabel.text = @"Presented";
     _countLabel.text = @"1";
     _timeLabel.text = @"10m";
@@ -82,18 +82,25 @@
     _rankLabel.textColor = [UIColor blueColor];
     _rankLabel.font = [UIFont systemFontOfSize:12.0f];
     
-    _commentLabel = [UILabel new];
-    _commentLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _commentLabel.textColor = [UIColor grayColor];
-    _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _commentLabel.numberOfLines = 0;
+    _commentText = [UITextView new];
+    _commentText.scrollEnabled = NO;
+    _commentText.editable = NO;
+    _commentText.selectable = NO;
+    _commentText.backgroundColor = [UIColor clearColor];
+    _commentText.translatesAutoresizingMaskIntoConstraints = NO;
+    _commentText.textContainer.lineFragmentPadding = 0.0f;
+    _commentText.textColor = [UIColor grayColor];
+    _commentText.contentInset = UIEdgeInsetsZero;
+    
+    [_commentText setTextContainerInset:UIEdgeInsetsZero];
+    [_commentText setLayoutMargins:UIEdgeInsetsZero];
     
     _timeLabel = [UILabel new];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _timeLabel.font = [UIFont systemFontOfSize:10.0f weight:UIFontWeightLight];
     
     [_commentView addSubview:_rankLabel];
-    [_commentView addSubview:_commentLabel];
+    [_commentView addSubview:_commentText];
     [_commentView addSubview:_timeLabel];
 }
 
@@ -121,7 +128,7 @@
 }
 
 - (void)setupConstraints {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_card, _commentView, _rankLabel, _commentLabel, _timeLabel, _votingView, _upVote, _countLabel, _downVote);
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_card, _commentView, _rankLabel, _commentText, _timeLabel, _votingView, _upVote, _countLabel, _downVote);
     
     [self setupCommentViewConstraintsWithViews:viewsDictionary];
     [self setupVotingViewConstraintsWithViews:viewsDictionary];
@@ -136,7 +143,7 @@
                                    views:viewsDictionary]];
     
     [_commentView addConstraints:[NSLayoutConstraint
-                                  constraintsWithVisualFormat:@"H:|-10-[_commentLabel]-10-|"
+                                  constraintsWithVisualFormat:@"H:|-10-[_commentText]-10-|"
                                   options:0
                                   metrics:0
                                   views:viewsDictionary]];
@@ -148,7 +155,7 @@
                                   views:viewsDictionary]];
     
     [_commentView addConstraints:[NSLayoutConstraint
-                                  constraintsWithVisualFormat:@"V:|-10-[_rankLabel(==10)]-2-[_commentLabel(>=40)]-2-[_timeLabel(==10)]-10-|"
+                                  constraintsWithVisualFormat:@"V:|-10-[_rankLabel(==10)]-2-[_commentText(>=40)]-2-[_timeLabel(==10)]-10-|"
                                   options:0
                                   metrics:0
                                   views:viewsDictionary]];
