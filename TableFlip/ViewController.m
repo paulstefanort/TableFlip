@@ -35,8 +35,6 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:@"cellIdentifier"];
     
-    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self.view addSubview:_tableView];
     
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_tableView
