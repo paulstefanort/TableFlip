@@ -19,12 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
-    [self setupViews];
+    [self setupViewsAndConstraints];
 }
 
-- (void)setupViews {
+- (void)setupViewsAndConstraints {
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     
+    [self setupTableView];
+    [self setupConstraints];
+}
+
+- (void)setupTableView {
     _tableView = [UITableView new];
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -36,7 +41,9 @@
     [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:@"cellIdentifier"];
     
     [self.view addSubview:_tableView];
-    
+}
+
+- (void)setupConstraints {
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_tableView
                                                                      attribute:NSLayoutAttributeTop
                                                                      relatedBy:NSLayoutRelationEqual
