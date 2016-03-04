@@ -43,16 +43,17 @@
 
 - (void)setupConstraints {
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_tableView);
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"H:|[_tableView]|"
                                options:0
                                metrics:0
-                               views:NSDictionaryOfVariableBindings(_tableView)]];
+                               views:viewDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"V:|[_tableView]|"
                                options:0
                                metrics:0
-                               views:NSDictionaryOfVariableBindings(_tableView)]];
+                               views:viewDictionary]];
 }
 
 # pragma mark - UITableViewDataSource
