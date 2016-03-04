@@ -34,12 +34,33 @@
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [self setupCommentView];
-        [self setupVotingView];
-        [self setupCardView];
-        [self setupConstraints];
+        [self setupViewsAndConstraints];
     }
     return self;
+}
+
+- (void)presentValue:(NSString *)value {
+    _commentLabel.text = value;
+    _rankLabel.text = @"Presented";
+    _countLabel.text = @"1";
+    _timeLabel.text = @"10m";
+}
+
+- (void)upvotePressed {
+    NSLog(@"upvoted");
+}
+
+- (void)downvotePressed {
+    NSLog(@"downvoted");
+}
+
+# pragma mark - View Setup
+
+- (void)setupViewsAndConstraints {
+    [self setupCommentView];
+    [self setupVotingView];
+    [self setupCardView];
+    [self setupConstraints];
 }
 
 - (void)setupCardView {
@@ -102,6 +123,12 @@
 - (void)setupConstraints {
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_card, _commentView, _rankLabel, _commentLabel, _timeLabel, _votingView, _upVote, _countLabel, _downVote);
     
+    [self setupCommentViewConstraintsWithViews:viewsDictionary];
+    [self setupVotingViewConstraintsWithViews:viewsDictionary];
+    [self setupCardConstraintsWithViews:viewsDictionary];
+}
+
+- (void)setupCommentViewConstraintsWithViews:(NSDictionary *)viewsDictionary {
     [_commentView addConstraints: [NSLayoutConstraint
                                    constraintsWithVisualFormat:@"H:|-10-[_rankLabel]-10-|"
                                    options:0
@@ -125,19 +152,9 @@
                                   options:0
                                   metrics:0
                                   views:viewsDictionary]];
-    
-    [_card addConstraints:[NSLayoutConstraint
-                           constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
-                           options:0
-                           metrics:0
-                           views:viewsDictionary]];
-    
-    [_card addConstraints:[NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
-                           options:0
-                           metrics:0
-                           views:viewsDictionary]];
-    
+}
+
+- (void)setupVotingViewConstraintsWithViews:(NSDictionary *)viewsDictionary {
     [_votingView addConstraints:[NSLayoutConstraint
                                  constraintsWithVisualFormat:@"H:|[_upVote]|"
                                  options:0
@@ -161,6 +178,20 @@
                                  options:0
                                  metrics:0
                                  views:viewsDictionary]];
+}
+
+- (void)setupCardConstraintsWithViews:(NSDictionary *)viewsDictionary {
+    [_card addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"H:|[_commentView]-10-[_votingView(40)]-10-|"
+                           options:0
+                           metrics:0
+                           views:viewsDictionary]];
+    
+    [_card addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"V:|[_commentView(>=80)]|"
+                           options:0
+                           metrics:0
+                           views:viewsDictionary]];
     
     [_card addConstraints:[NSLayoutConstraint
                            constraintsWithVisualFormat:@"V:|[_votingView]|"
@@ -179,21 +210,6 @@
                                       options:0
                                       metrics:0
                                       views:viewsDictionary]];
-}
-
-- (void)presentValue:(NSString *)value {
-    _commentLabel.text = value;
-    _rankLabel.text = @"Presented";
-    _countLabel.text = @"1";
-    _timeLabel.text = @"10m";
-}
-
-- (void)upvotePressed {
-    NSLog(@"upvoted");
-}
-
-- (void)downvotePressed {
-    NSLog(@"downvoted");
 }
 
 @end
